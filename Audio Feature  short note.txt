@@ -1,0 +1,108 @@
+Audio Signal
+
+Analog > ADC > DAC > Filter > Analog
+https://devopedia.org/images/article/340/5417.1621765738.png
+
+An audio signal is a representation of sound. It encodes all the necessary information required to reproduce sound
+
+Analog refers to audio recorded using methods that replicate the original sound waves
+Digital audio is recorded by taking samples of the original sound wave at a specified rate, called sampling rate. CDs and MP3 files are examples of digital formats.
+
+
+What are the common audio features useful for modeling?
+Audio features are description of sound or an audio signal that can basically be fed into statistical or ML models to build intelligent audio systems.
+
+ Audio applications that use such features include audio classification, speech recognition, automatic music tagging, audio segmentation and source separation, audio fingerprinting, audio denoising, music information retrieval, and more.
+ 
+ Audio Feature category
+ 
+ 1. Level of abstraction : High-level(Human understanding), mid-level(aggregation of low level feature) and low-level(machine understanding)
+ 
+ 2. Temporal Scope: Time-domain features that could be instantaneous(Chunks of audio signal), segment-level(range of sound) and global(whole sound).
+ 
+ 3. Musical Aspect: Acoustic properties that include beat, rhythm, timbre (colour / Quality of sound), pitch, harmony, melody, etc.
+ 
+ 4.Signal Domain: 
+ 	Features in the time domain(raw audio), 
+ 	frequency domain(Fouriar Transform(raw data)) or 
+ 	Time-Frequency representation:Short time Fouriar transform > Spectrogram , Mel-Spectrogram
+	In the simplest of terms, the STFT of a signal is calculated by applying the Fast Fourier Transform (FFT) locally on small time segments of the signal.
+ 	
+ 
+ 
+Audio Feature under ML approach
+
+Amplitude Envelope,
+Zero-Crossing Rate (ZCR),
+Root Mean Square (RMS) Energy,
+Spectral Centroid,
+Band Energy Ratio,
+Spectral Bandwidth.
+Spectral flux
+Spectral spread
+Spectral roll-off
+		|
+		|
+		|
+		|
+   Traditional Ml algorithm
+   		|
+   		|
+   		|
+   	Car sound	
+   		
+	
+		 
+Audio Feature under Deep Learning approach
+Deep Learning approach considers unstructured audio representations such as the spectrogram or MFCCs. It extracts the feature automatically.
+Spectrograms, mel-spectrograms, and Mel-Frequency Cepstral Coefficients (MFCC)
+A mel-spectrogram is a therefore a spectrogram where the frequencies are converted to the mel scale.
+ 	mel-scale = 2595*log(1+f/500)
+ 	
+The Mel-Frequency Cepstral Coefficients (MFCCs) are nothing but the coefficients that make up the mel-frequency cepstrum.
+MFCC : https://devopedia.org/images/article/340/9044.1621765887.png
+
+Band Ratio : Relation Between high and low frequency. This feature has been extensively used in music/speech discrimination, music classification .
+ 
+ 
+Spectral centroid :It gives the frequency band where most of the energy is concentrated.
+The spectral bandwidth or spectral spread is derived from the spectral centroid. It is the spectral range of interest around the centroid, that is, the variance from the spectral centroid.
+ 
+
+Fouriar transform -> Time domain to frequency domain conversion.
+
+		There is an issue called spectral leakage
+		During the conversion in frequency domain there are some high frequency(generate from discontinuity) which is not exist on the orginal signal.
+		For that the problem is		
+ 			1.Reduce the frequency resulation
+ 			2.Degrade the amplitude accuracy
+ 			
+ 		Solution : 
+ 			1.Properly Choose sampling rate
+ 			2.Apply tailored windowing function(windowing)
+ 			3.How to Control Spectral Leakage with Window Functions in LabOne(https://www.zhinst.com/europe/en/blogs/how-control-spectral-leakage-window-				functions-labone#:~:text=This%20phenomenon%20is%20called%20spectral,frequency%20resolution%20of%20the%20measurement.)
+ 			4.Spectral Leakage and Zero-Padding of the Discrete Fourier Transform (https://dspillustrations.com/pages/posts/misc/spectral-leakage-zero-padding-and-frequency-resolution.html)
+ 			
+ 
+ Time domain feature
+ 	1.Amplitude enelope
+ 	2.Root-mean-square energy(RMS)
+ 	3.Zero-crossing rate(ZCR)
+ 
+ 
+ 
+Fouriar transform at the core of signal processing.
+
+Intuition : Decompose a complex sound(Raw audio) into it's frequency components
+
+Prisom as an example : https://notesfromanaspiringhumanitarian.com/wp-content/uploads/2016/06/prisom.jpg
+
+From time to frequency domain > Foriar tranform
+
+1. First things we do is we compare the orginal singnal with a bunch of sinusoids with various frequency
+2. For each frequency we get a magnitude and a phase.
+3. High magnitude indicates high similarity between the the signal and sinusoid
+4. sine wave = sin(2*pi(f*t-phase))
+ 
+ 
+ 
